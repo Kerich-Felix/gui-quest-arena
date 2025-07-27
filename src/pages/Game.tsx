@@ -135,7 +135,6 @@ const Game = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
               <h1 className="text-4xl font-bold gradient-text mb-6">{game.name}</h1>
-              
               <Card className="gaming-card p-8 mb-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                   <div className="text-center">
@@ -154,9 +153,14 @@ const Game = () => {
                     <p className="font-bold text-accent">Medium</p>
                   </div>
                 </div>
-
                 <div className="text-center">
-                  <Button onClick={startGame} variant="gaming" size="xl">
+                  <Button 
+                    onClick={e => {
+                      e.preventDefault();
+                      startGame();
+                      // Removed scroll-to-top behavior
+                    }} 
+                    variant="gaming" size="xl">
                     <Coins className="w-5 h-5" />
                     Pay {game.entryFee} & Start Game
                   </Button>
@@ -171,9 +175,10 @@ const Game = () => {
   }
 
   if (gameComplete) {
+    // Safely check for questions before accessing length
+    const hasQuestions = Array.isArray(game.questions) && game.questions.length > 0;
     const finalScore = score;
-    const earnedTokens = Math.floor((finalScore / game.questions!.length) * 200);
-    
+    const earnedTokens = hasQuestions ? Math.floor((finalScore / game.questions.length) * 200) : 0;
     return (
       <div className="min-h-screen bg-background">
         <Navigation />
@@ -181,22 +186,19 @@ const Game = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
               <h1 className="text-4xl font-bold gradient-text mb-6">Game Complete!</h1>
-              
               <Card className="gaming-card p-8 mb-8">
                 <Trophy className="w-16 h-16 mx-auto mb-4 text-primary" />
                 <h2 className="text-2xl font-bold mb-4">Your Results</h2>
-                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   <div className="text-center">
                     <p className="text-sm text-muted-foreground">Score</p>
-                    <p className="text-3xl font-bold text-primary">{finalScore}/{game.questions!.length}</p>
+                    <p className="text-3xl font-bold text-primary">{hasQuestions ? `${finalScore}/${game.questions.length}` : "N/A"}</p>
                   </div>
                   <div className="text-center">
                     <p className="text-sm text-muted-foreground">Earned</p>
                     <p className="text-3xl font-bold text-secondary">{earnedTokens} $GUI</p>
                   </div>
                 </div>
-
                 <div className="flex gap-4 justify-center">
                   <Button onClick={playAgain} variant="gaming">
                     Play Again
@@ -214,52 +216,61 @@ const Game = () => {
     );
   }
 
+  // Safely check for questions before rendering quiz UI
+  const hasQuestions = Array.isArray(game.questions) && game.questions.length > 0;
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       <div className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
-            <div className="flex justify-between items-center mb-6">
-              <h1 className="text-2xl font-bold gradient-text">Question {currentQuestion + 1}/{game.questions!.length}</h1>
-              <div className="flex items-center gap-2">
-                <Clock className="w-5 h-5 text-accent" />
-                <span className="text-xl font-bold text-accent">{timeLeft}s</span>
-              </div>
-            </div>
-
-            <Progress value={(timeLeft / 30) * 100} className="mb-8" />
-
-            <Card className="gaming-card p-8 mb-8">
-              <h2 className="text-xl font-bold mb-6">{game.questions![currentQuestion].question}</h2>
-              
-              <div className="space-y-3">
-                {game.questions![currentQuestion].options.map((option, index) => (
-                  <Button
-                    key={index}
-                    onClick={() => handleAnswerSelect(index)}
-                    variant={selectedAnswer === index ? "gaming" : "outline"}
-                    className="w-full text-left justify-start p-4 h-auto"
+            {hasQuestions ? (
+              <>
+                <div className="flex justify-between items-center mb-6">
+                  <h1 className="text-2xl font-bold gradient-text">Question {currentQuestion + 1}/{game.questions.length}</h1>
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-accent" />
+                    <span className="text-xl font-bold text-accent">{timeLeft}s</span>
+                  </div>
+                </div>
+                <Progress value={(timeLeft / 30) * 100} className="mb-8" />
+                <Card className="gaming-card p-8 mb-8">
+                  <h2 className="text-xl font-bold mb-6">{game.questions[currentQuestion].question}</h2>
+                  <div className="space-y-3">
+                    {game.questions[currentQuestion].options.map((option, index) => (
+                      <Button
+                        key={index}
+                        onClick={() => handleAnswerSelect(index)}
+                        variant={selectedAnswer === index ? "gaming" : "outline"}
+                        className="w-full text-left justify-start p-4 h-auto"
+                      >
+                        <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center mr-3 text-sm">
+                          {String.fromCharCode(65 + index)}
+                        </span>
+                        {option}
+                      </Button>
+                    ))}
+                  </div>
+                </Card>
+                <div className="text-center">
+                  <Button 
+                    onClick={handleNextQuestion} 
+                    disabled={selectedAnswer === null}
+                    variant="hero"
+                    size="lg"
                   >
-                    <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center mr-3 text-sm">
-                      {String.fromCharCode(65 + index)}
-                    </span>
-                    {option}
+                    {currentQuestion === game.questions.length - 1 ? "Finish Game" : "Next Question"}
                   </Button>
-                ))}
+                </div>
+              </>
+            ) : (
+              <div className="text-center py-20">
+                <h2 className="text-2xl font-bold mb-4">No questions available for this game.</h2>
+                <Button onClick={() => window.location.href = "/games"} variant="outline">
+                  Choose New Game
+                </Button>
               </div>
-            </Card>
-
-            <div className="text-center">
-              <Button 
-                onClick={handleNextQuestion} 
-                disabled={selectedAnswer === null}
-                variant="hero"
-                size="lg"
-              >
-                {currentQuestion === game.questions!.length - 1 ? "Finish Game" : "Next Question"}
-              </Button>
-            </div>
+            )}
           </div>
         </div>
       </div>
