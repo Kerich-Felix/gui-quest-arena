@@ -4,7 +4,7 @@ import guiTokenHero from "@/assets/gui-token-hero.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-40">
       {/* Background with animated overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-primary/5 to-transparent" />
@@ -28,12 +28,12 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 text-center relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Main Heading */}
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 gradient-text leading-tight">
+          <h1 className="text-5xl md:text-8xl font-bold mb-8 gradient-text leading-tight">
             GUI Quest Arena
           </h1>
           
           {/* Token Visual */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-12">
             <div className="relative">
               <img 
                 src={guiTokenHero} 
@@ -45,12 +45,12 @@ const HeroSection = () => {
           </div>
 
           {/* Tagline */}
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl mx-auto">
             Enter the ultimate Web3 gaming arena! Use <span className="text-primary font-bold">$GUI tokens</span> to compete in epic PvP battles, solve meme trivia, and collect rare NFT rewards.
           </p>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 md:gap-8 mb-12 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16 max-w-2xl mx-auto">
             <div className="gaming-card p-4 text-center">
               <div className="text-2xl md:text-3xl font-bold text-primary mb-2">
                 <Coins className="w-8 h-8 mx-auto mb-2" />
@@ -75,7 +75,7 @@ const HeroSection = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button variant="hero" size="xl" className="group">
               <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
               Start Playing Now
@@ -87,7 +87,7 @@ const HeroSection = () => {
           </div>
 
           {/* Additional Info */}
-          <div className="mt-12 text-sm text-muted-foreground">
+          <div className="mt-16 text-sm text-muted-foreground">
             <p>Built on <span className="text-secondary font-semibold">Aptos Blockchain</span> • Powered by <span className="text-primary font-semibold">$GUI Tokens</span></p>
           </div>
         </div>
