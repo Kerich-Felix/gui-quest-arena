@@ -1,73 +1,68 @@
-# Welcome to your Lovable project
+# GUI Quest Arena
 
-## Project info
+GUI Quest Arena is a vibrant Web3 gaming platform built on the Aptos blockchain. Compete in PvP battles, solve meme trivia, and collect rare NFT rewards using $GUI tokens.
 
-**URL**: https://lovable.dev/projects/7ea420ee-0a82-42cb-b720-13f611ac16bb
+## Features
+- **Mini Games:** Play a variety of fun and competitive games.
+- **Leaderboard:** Track your progress and compete for top spots.
+- **Rewards:** Earn $GUI tokens and exclusive NFTs.
+- **Community:** Join a growing community of gamers and blockchain enthusiasts.
+- **Wallet Integration:** Connect your Petra Wallet for seamless gameplay and rewards.
 
-## How can I edit this code?
+## Tech Stack
+- **Frontend:** React, Vite, Tailwind CSS
+- **Icons:** Lucide React
+- **State Management:** React Query
+- **Blockchain:** Aptos
 
-There are several ways of editing your application.
+## Getting Started
 
-**Use Lovable**
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm or bun
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7ea420ee-0a82-42cb-b720-13f611ac16bb) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Installation
+```bash
+npm install
+# or
+bun install
 ```
 
-**Edit a file directly in GitHub**
+### Development
+```bash
+npm run dev
+# or
+bun run dev
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Build
+```bash
+npm run build
+# or
+bun run build
+```
 
-**Use GitHub Codespaces**
+### Preview
+```bash
+npm run preview
+# or
+bun run preview
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Deployment
+This project is ready for deployment on Vercel. See `vercel.json` for configuration.
 
-## What technologies are used for this project?
+## Folder Structure
+- `src/components/` - UI components
+- `src/pages/` - Page components
+- `src/assets/` - Images and assets
+- `public/` - Static files
 
-This project is built with:
+## Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## License
+MIT
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/7ea420ee-0a82-42cb-b720-13f611ac16bb) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+Built by Kerich-Felix
