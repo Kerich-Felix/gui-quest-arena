@@ -1,15 +1,17 @@
 import Navigation from "@/components/Navigation";
-import HeroSection from "@/components/HeroSection";
+import HowToPlay from "@/components/HowToPlay";
 import Footer from "@/components/Footer";
 
-const Index = () => {
+const HowToPlayPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <HeroSection />
+      <div className="pt-32">
+        <HowToPlay />
+      </div>
       <Footer />
     </div>
   );
 };
 
-export default Index;
+export default HowToPlayPage;

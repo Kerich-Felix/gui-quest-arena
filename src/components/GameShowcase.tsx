@@ -2,16 +2,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Brain, Map, Zap, Users, Clock, Coins } from "lucide-react";
+import { Link } from "react-router-dom";
 import triviaGameMockup from "@/assets/trivia-game-mockup.jpg";
 
 const GameShowcase = () => {
   const games = [
     {
-      id: 1,
+      id: "meme-trivia",
       title: "Meme Trivia Battle",
       description: "Test your meme knowledge in fast-paced trivia duels. Answer questions about crypto culture, internet memes, and Web3 trends.",
-      entryFee: "10 $GUI",
-      prize: "100 $GUI + NFT",
+      entryFee: "50 $GUI",
+      prize: "200 $GUI + Rare NFT",
       players: "1v1 or Battle Royale",
       duration: "5-10 mins",
       icon: Brain,
@@ -21,11 +22,11 @@ const GameShowcase = () => {
       features: ["Real-time multiplayer", "Meme categories", "Daily challenges", "Streak bonuses"]
     },
     {
-      id: 2,
-      title: "Token Treasure Hunt",
+      id: "token-quest",
+      title: "Token Collection Quest",
       description: "Explore interactive maps to find hidden $GUI tokens and rare NFT treasures. Use strategy and speed to outpace other hunters.",
-      entryFee: "25 $GUI",
-      prize: "500 $GUI + Rare NFT",
+      entryFee: "75 $GUI",
+      prize: "300 $GUI + Epic NFT",
       players: "Up to 20",
       duration: "15-30 mins",
       icon: Map,
@@ -35,17 +36,17 @@ const GameShowcase = () => {
       features: ["Procedural maps", "Power-ups", "Team mode", "Boss encounters"]
     },
     {
-      id: 3,
-      title: "Lightning Reflexes",
+      id: "pvp-battle",
+      title: "PvP Battle Arena",
       description: "Quick reaction mini-games with crypto-themed challenges. Perfect your timing to earn massive $GUI rewards.",
-      entryFee: "5 $GUI",
-      prize: "50 $GUI",
+      entryFee: "100 $GUI",
+      prize: "500 $GUI + Legendary NFT",
       players: "Solo or Duo",
       duration: "2-5 mins",
       icon: Zap,
       image: triviaGameMockup,
       difficulty: "Hard",
-      category: "PvE",
+      category: "PvP",
       features: ["Split-second timing", "Combo multipliers", "Daily tournaments", "Skill rankings"]
     }
   ];
@@ -152,12 +153,16 @@ const GameShowcase = () => {
 
                   {/* Action Buttons */}
                   <div className="flex gap-2 pt-4">
-                    <Button variant="gaming" className="flex-1" size="sm">
-                      Play Now
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      Demo
-                    </Button>
+                    <Link to={`/game/${game.id}`}>
+                      <Button variant="gaming" className="flex-1" size="sm">
+                        Play Now
+                      </Button>
+                    </Link>
+                    <Link to={`/game/${game.id}`}>
+                      <Button variant="outline" size="sm">
+                        Demo
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
